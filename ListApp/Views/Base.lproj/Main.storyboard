@@ -27,7 +27,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -41,7 +41,13 @@
                             <constraint firstItem="iyt-sK-dV9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mSs-P6-c3K"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="ListApp" id="lor-0g-d77"/>
+                    <navigationItem key="navigationItem" title="ListApp" id="lor-0g-d77">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2cX-hP-xPa">
+                            <connections>
+                                <action selector="barButtonItemTapped:" destination="BYZ-38-t0r" id="7pq-om-QPN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="iyt-sK-dV9" id="DVA-QR-zDO"/>
                     </connections>
@@ -72,9 +78,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

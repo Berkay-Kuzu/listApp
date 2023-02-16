@@ -11,7 +11,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var tableView: UITableView!
     
-    var data = ["Swift", "C", "C++", "C#", "Java", "Kotlin"]
+    
+    var data = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "defaultCell", for: indexPath)
         cell.textLabel?.text = data[indexPath.row]
         return cell
+    }
+    
+    @IBAction func barButtonItemTapped(_ sender: UIBarButtonItem) {
+        print("DENEME")
     }
 
 }
