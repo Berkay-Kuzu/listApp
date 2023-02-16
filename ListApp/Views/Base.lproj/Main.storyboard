@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--ListApp-->
+        <!--List App-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ListApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -41,7 +41,13 @@
                             <constraint firstItem="iyt-sK-dV9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mSs-P6-c3K"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="ListApp" id="lor-0g-d77">
+                    <navigationItem key="navigationItem" title="List App" id="lor-0g-d77">
+                        <barButtonItem key="leftBarButtonItem" systemItem="trash" id="PX3-y7-WUw">
+                            <color key="tintColor" red="0.8078432083" green="0.2823529541" blue="0.13333332540000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="didRemoveBarButtonItemTapped:" destination="BYZ-38-t0r" id="XoN-ZP-1i2"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2cX-hP-xPa">
                             <connections>
                                 <action selector="barButtonItemTapped:" destination="BYZ-38-t0r" id="7pq-om-QPN"/>
