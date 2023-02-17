@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -18,16 +18,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "defaultCell", for: indexPath)
-        cell.textLabel?.text = data[indexPath.row]
-        return cell
     }
     
     @IBAction func barButtonItemTapped(_ sender: UIBarButtonItem) {
@@ -63,7 +53,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         presentAlert(titleInput: "You can add an item easily",
                      messageIntput: nil,
-                     cancelAlertButtonInput: "No",
+                     cancelAlertButtonInput: "Cancel",
                      defaultButtonTitleInput: "Add",
                      isTextFieldAvailable: true) { _ in
             let text = self.alertController.textFields?.first?.text
@@ -105,15 +95,60 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         let cancelButton = UIAlertAction(title: cancelAlertButtonInput,
-                                         style: .destructive)
+                                         style: .default)
         
         if isTextFieldAvailable {
             alertController.addTextField()
         }
-
+        
         alertController.addAction(cancelButton)
         
         present(alertController, animated: true)
     }
+}
+
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "defaultCell", for: indexPath)
+        cell.textLabel?.text = data[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive,
+                                              title: "Delete") { _, _, _ in
+            self.data.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+        
+        let editAction = UIContextualAction(style: .normal,
+                                            title: "Edit") { _, _, _ in
+            self.presentAlert(titleInput: "You can edit an item easily",
+                         messageIntput: nil,
+                         cancelAlertButtonInput: "Cancel",
+                         defaultButtonTitleInput: "Edit",
+                         isTextFieldAvailable: true) { _ in
+                let text = self.alertController.textFields?.first?.text
+                if text != "" {
+                    self.data[indexPath.row] = text!
+                    self.tableView.reloadData()
+                    
+                } else {
+                    self.presentWarningAlert()
+                }
+            }
+        }
+        
+        let config = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+        
+        return config
+    }
+    
 }
 
