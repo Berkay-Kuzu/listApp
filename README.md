@@ -1,6 +1,6 @@
 # listApp
 
-List app is a note taking app. Users can add, delete, and edit their notes easily. Also, they can delete all notes just by clicking delete item on the left corner of the app. I used CoreData as a local storage.
+List app is a note-taking app. Users can add, delete, and edit their notes easily. Also, they can delete all notes just by clicking delete item on the left corner of the app. I used CoreData as a local storage.
 
 # Video and Images
 
